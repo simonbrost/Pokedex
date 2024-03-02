@@ -1,15 +1,18 @@
-let pokemon = ['0', '1', '2', '3', '4', '5', '6', '7', '8']
+let url = 'https://pokeapi.co/api/v2/pokemon';
+let urlOfPokemon = [];
+let pokeNames = ['0', '1', '2', '3', '4', '5', '6', '7', '8']
+let pokemonImages = []
+let pokemonInfos = []
 
-async function init() {
-  let url = 'https://pokeapi.co/api/v2/pokemon';
+async function init(url) {
   let response = await fetch(url);
-  let responseAsJson = await response.json();
+  let urlAsJson = await response.json();
 
-  let onePokemon = responseAsJson['results'];
-  console.log(responseAsJson['results']);
+  let resultsFromUrl = urlAsJson['results'];
+  console.log(urlAsJson);
 
-  for (let i = 0; i < pokemon.length; i++) {
-    const pokename = onePokemon[pokemon[i]]['name'];
+  for (let i = 0; i < pokeNames.length; i++) {
+    const pokename = resultsFromUrl[pokeNames[i]]['name'];
     // const pokeimg = onePokemon[pokemon[i]]['name'];
     // const pokeinfo = onePokemon[pokemon[i]]['name'];
 
@@ -31,4 +34,8 @@ async function init() {
         `;
   }
 }
+
+// next problem: wie bekomme ich bild und info in die jeweilige card. ist nämlich nicht unter dem selben link der API wie der name allein
+//junus sagt im ersten video irgendwas davon dass man die api dynamisch kriegen muss bzw. denletzten teil des links wo der name des pokemon steht
+
 
